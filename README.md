@@ -59,11 +59,10 @@ void bitonic_sort_fun(float* data,int left,int right)
  把所有被segmentedBitonicSort调用的函数写进segmentedBitonicSort里面即可。</br>
  
  </br><span><strong>3.内存高效：segmentedBitonicSort及其所调用的任何其他函数都不得进行动态内存分配，包括malloc、new和静态定义的STL容器。</strong></span>
- </br></br>原本为了把长度不足2^n的数据填充到2^n,先算出了所需的最小的`2^n=full`，然后`float* seg = new float[full]`，再在多余位置填充`FLT_MAX`，它表示float所能表示的最大值。
-现在为了实现内存高效，不能使用`new`来开辟内存，所以直接`float* seg = new float[200000]`,缺点是这样一来每一段的最多只能包含200000个数据了。
+ </br></br>原本为了把长度不足2^n的数据填充到2^n,先算出了所需的最小的`2^n=full`，然后`float* seg = new float[full]`，再在多余位置填充`FLT_MAX`，它表示float所能表示的最大值。</br>
+现在为了实现内存高效，不能使用`new`来开辟内存，所以直接`float* seg = new float[200000]`,缺点是这样一来每一段的最多只能包含200000个数据了。</br>
 
- <span><strong>5.不需内存：segmentedBitonicSort不调用任何函数（包括C/C++标准库函数)，不使用全局变量，所有局部变量都是int、float或指针类 型，C++程序不使用new 
-关键字。</strong></span></br>
+ <span><strong>5.不需内存：segmentedBitonicSort不调用任何函数（包括C/C++标准库函数)，不使用全局变量，所有局部变量都是int、float或指针类型，C++程序不使用new关键字。</strong></span></br>
 不使用全局变量所以不能引入`#include<cfloat>`来使用`FLT_MAX`表示float范围内的最大值，所有出现FLT_MAX的地方都用`3.40282e+038`代替即可。</br>
 
  <span><strong>6、绝对鲁棒：在输入数据中包含NaN时（例如sqrt(-1.f)），保证除NaN以外的数据正确排序，NaN的个数保持不变。</strong></span></br>
