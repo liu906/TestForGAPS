@@ -52,7 +52,7 @@ n, int m)
             if(data[index]==data[index]) seg[j] = data[index];
             else
             {
-                seg[j] = 3.40282e+038;
+                seg[j] = 1/0.0;
                 count_nan++;
             }
         }
@@ -117,10 +117,10 @@ int main()
 {
 
 
-float data[8]={1/0.0,sqrt(-1.f),3.404e+38,-3333333,-1111111,0,0,3};
-int seg_id[8]={0,0,0,0,1,1,1,1};
-int seg_start[3]={0,4,8};
-int n=8;
+float data[5]={1111111,8222222,3333333,9444444,7777777};
+int seg_id[5]={0,0,0,1,1};
+int seg_start[3]={0,3,5};
+int n=5;
 int m=2;
 
     segmentedBitonicSort(data,seg_id,seg_start,n,m);
